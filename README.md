@@ -86,8 +86,7 @@ void ScopedTimerFunction() {
     // Do some work that takes time
     DoWork();
     
-    // ScopedTimer will automatically deconstruct itself when out of scope
-    // It will print the provided name and elapsed time in milliseconds to stdout
+    // It will print the provided name and elapsed time in milliseconds to stdout on deconstruction
 }
 ```
 
