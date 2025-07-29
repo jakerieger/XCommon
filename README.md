@@ -1,6 +1,6 @@
-# xCommon
+# XCommon
 
-xCommon is a collection of utility source files for C++20. It includes utilities for date & time,
+XCommon is a collection of utility source files for C++20. It includes utilities for date & time,
 filesystem operations, timers, strings, and convenience files such as simplified typedefs and macros.
 
 This was developed primarily for my own use, but I decided to share it incase anyone else finds it useful.
