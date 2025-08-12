@@ -5,6 +5,7 @@
 #pragma once
 
 #include "Typedefs.hpp"
+#include "Macros.hpp"
 #include <chrono>
 #include <iomanip>
 #include <sstream>
@@ -20,9 +21,13 @@ namespace x {
             return DateTime(std::chrono::system_clock::now());
         }
 
+        X_NODISCARD Timepoint TimePoint() const {
+            return mTime;
+        }
+
         // Should return a string in the following format:
         // YYYY-MM-DD HH:MM:SS AM/PM
-        [[nodiscard]] str UTCString() const {
+        X_NODISCARD str UTCString() const {
             const auto time_t = std::chrono::system_clock::to_time_t(mTime);
             std::tm utcTm {};
             gmtime_s(&utcTm, &time_t);
@@ -31,7 +36,7 @@ namespace x {
 
         // Should return a string in the following format:
         // YYYY-MM-DD HH:MM:SS AM/PM
-        [[nodiscard]] str LocalString() const {
+        X_NODISCARD str LocalString() const {
             const auto time_t = std::chrono::system_clock::to_time_t(mTime);
             std::tm localTm {};
             localtime_s(&localTm, &time_t);
@@ -40,7 +45,7 @@ namespace x {
 
         // Should return a string in the following format:
         // YYYY-MM-DD
-        [[nodiscard]] str DateString() const {
+        X_NODISCARD str DateString() const {
             const auto time_t = std::chrono::system_clock::to_time_t(mTime);
             std::tm dateTm {};
             localtime_s(&dateTm, &time_t);
@@ -51,7 +56,7 @@ namespace x {
 
         // Should return a string in the following format:
         // HH:MM:SS AM/PM
-        [[nodiscard]] str TimeString() const {
+        X_NODISCARD str TimeString() const {
             const auto time_t = std::chrono::system_clock::to_time_t(mTime);
             std::tm timeTm {};
             localtime_s(&timeTm, &time_t);
@@ -63,7 +68,7 @@ namespace x {
             mTime = std::chrono::system_clock::now();
         }
 
-        [[nodiscard]] static str FormatDateTimeString(const std::tm& tm) {
+        X_NODISCARD static str FormatDateTimeString(const std::tm& tm) {
             std::ostringstream oss;
             oss << std::put_time(&tm, "%Y-%m-%d");
             oss << " ";
@@ -71,7 +76,7 @@ namespace x {
             return oss.str();
         }
 
-        [[nodiscard]] static str FormatTimeString(const std::tm& tm) {
+        X_NODISCARD static str FormatTimeString(const std::tm& tm) {
             std::ostringstream oss;
 
             i32 hour        = tm.tm_hour;
